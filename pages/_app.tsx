@@ -9,6 +9,7 @@ import Head from 'next/head'
 import { Analytics } from '~/components/analytics'
 import { LayoutWrapper } from '~/components/LayoutWrapper'
 import nextI18NextConfig from '../next-i18next.config.js'
+import DatadogInit from '~/components/analytics/DatadogInit.jsx'
 
 function App({ Component, pageProps }) {
   return (
