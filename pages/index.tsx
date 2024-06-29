@@ -44,7 +44,7 @@ export default function Home({ posts }) {
             </div>
           </div>
           <div className="hidden xl:block">
-            <ProfileCard />
+            <ProfileCard variant="front" />
           </div>
         </div>
       </div>

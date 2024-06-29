@@ -9,6 +9,8 @@ export function LanguageSwitcher() {
 
   return (
     <Popover>
+      {/* TODO: fix types */}
+      {/* @ts-expect-error radix-ui's typing are messy */}
       <PopoverTrigger className="p-2.5 hover:bg-gray-200 dark:hover:bg-gray-700 rounded cursor-pointer">
         <Image
           src={locale.flag}
@@ -23,6 +25,8 @@ export function LanguageSwitcher() {
           {localeCodes.map((code) => {
             let { flag, name } = getLocale(code)
             return (
+              // TODO: fix types
+              // @ts-expect-error radix-ui's typing are messy
               <PopoverClose
                 key={code}
                 onClick={() => updateLocale(code)}

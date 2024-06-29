@@ -57,6 +57,7 @@ export function withFlipAnimation<T extends { variant: 'front' | 'back' }>(
         transition={spring}
         style={{
           perspective: '1200px',
+          // @ts-expect-error TODO: fix this type  error
           transformStyle: 'preserve-3d',
           width: `${props.width}`,
           height: `${props.height}`,
@@ -68,9 +69,8 @@ export function withFlipAnimation<T extends { variant: 'front' | 'back' }>(
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseEnd}
           transition={spring}
+          className="w-full h-full"
           style={{
-            width: '100%',
-            height: '100%',
             rotateX: dx,
             rotateY: dy,
           }}
@@ -86,9 +86,9 @@ export function withFlipAnimation<T extends { variant: 'front' | 'back' }>(
             <motion.div
               animate={{ rotateY: isFlipped ? -180 : 0 }}
               transition={spring}
+              className="w-full h-full"
               style={{
-                width: '100%',
-                height: '100%',
+                // @ts-expect-error TODO: come back and fix types here later
                 zIndex: isFlipped ? 0 : 1,
                 backfaceVisibility: 'hidden',
                 position: 'absolute',
@@ -108,6 +108,7 @@ export function withFlipAnimation<T extends { variant: 'front' | 'back' }>(
               animate={{ rotateY: isFlipped ? 0 : 180 }}
               transition={spring}
               style={{
+                // @ts-expect-error TODO: come back and fix types here later
                 width: '100%',
                 height: '100%',
                 zIndex: isFlipped ? 1 : 0,

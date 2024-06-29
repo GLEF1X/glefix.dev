@@ -11,7 +11,7 @@ import { generateRss } from '~/libs/rss.server'
 import { getAllTags } from '~/libs/tags.server'
 import type { BlogFrontMatter } from '~/types/mdx'
 import { kebabCase } from '~/utils/string'
-import nextI18NextConfig from '../next-i18next.config.js'
+import nextI18NextConfig from '../../next-i18next.config.js'
 
 export async function getStaticPaths({ locales }: { locales: string[] }) {
   let tags = getAllTags(`${DEFAULT_LOCALE}/blog`, `${DEFAULT_LOCALE}/snippets`)
