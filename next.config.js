@@ -6,6 +6,9 @@ let { i18n } = require('./next-i18next.config')
 
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
+  experimental: {
+    serverComponentsExternalPackages: ['next-i18next'],
+  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   eslint: {
     dirs: ['components', 'constant', 'layouts', 'libs', 'pages', 'scripts', 'utils'],
