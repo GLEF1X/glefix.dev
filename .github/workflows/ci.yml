@@ -1,0 +1,50 @@
+name: upload-sourcemap-to-datadog
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Use pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.4.0
+
+      - name: install datadog-ci
+        run: pnpm install --global @datadog/datadog-ci
+
+      - name: Install pnpm
+        run: pnpm i --frozen-lockfile
+
+      - name: Run pnpm build
+        run: pnpm build
+
+      - name: Get git short hash
+        id: get_git_short_hash
+        run: echo "GIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: upload sourcemap
+        run: |
+          datadog-ci sourcemaps upload ./.next/static \
+          --service=$DATADOG_SERVICE_NAME \
+          --release-version=1.0.0 \
+          --minified-path-prefix=/_next/static
+        env:
+          DATADOG_SITE: us5.datadoghq.com
+          DATADOG_API_HOST: api.us5.datadoghq.com
+          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+          DATADOG_SERVICE_NAME: ${{ secrets.DATADOG_SERVICE_NAME }}
+          GIT_HASH: ${{ steps.get_git_short_hash.outputs.GIT_HASH }}

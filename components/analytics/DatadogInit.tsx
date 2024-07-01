@@ -13,6 +13,7 @@ datadogRum.init({
   trackUserInteractions: true,
   trackResources: true,
   trackLongTasks: true,
+  version: '1.0.0',
   defaultPrivacyLevel: 'mask-user-input',
   // Specify URLs to propagate trace headers for connection between RUM and backend trace
   allowedTracingUrls: [{ match: 'https://glefix.dev/api/', propagatorTypes: ['tracecontext'] }],

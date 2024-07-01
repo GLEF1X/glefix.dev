@@ -9,6 +9,7 @@ module.exports = withBundleAnalyzer({
   experimental: {
     serverComponentsExternalPackages: ['next-i18next'],
   },
+  productionBrowserSourceMaps: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   eslint: {
     dirs: ['components', 'constant', 'layouts', 'libs', 'pages', 'scripts', 'utils'],
@@ -20,6 +21,7 @@ module.exports = withBundleAnalyzer({
   i18n,
   trailingSlash: true,
   webpack: (config, options) => {
+    config.devtool = 'hidden-source-map'
     config.module.rules.push({
       test: /\.(png|jpe?g|gif|mp4)$/i,
       use: [
