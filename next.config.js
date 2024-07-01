@@ -6,7 +6,6 @@ let { i18n } = require('./next-i18next.config')
 
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
-  productionBrowserSourceMaps: true,
   experimental: {
     serverComponentsExternalPackages: ['next-i18next'],
   },
