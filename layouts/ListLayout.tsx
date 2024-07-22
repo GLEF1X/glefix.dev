@@ -1,18 +1,25 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Pagination } from '~/components/Pagination'
 import { PostListItem } from '~/components/PostListItem'
 import { PostsSearch } from '~/components/PostsSearch'
 import type { ListLayoutProps } from '~/types/layout'
 import { useTranslation } from 'next-i18next'
+import fuzzysort from 'fuzzysort'
 
 function ListLayout(props: ListLayoutProps) {
   let { posts, title, initialDisplayPosts = [], pagination } = props
   let { t } = useTranslation('common')
   let [searchValue, setSearchValue] = useState('')
-  let filteredBlogPosts = posts.filter((frontMatter) => {
-    let searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
-    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
-  })
+  const filteredBlogPosts = useMemo(() => {
+    if (!searchValue) {
+      return posts
+    }
+
+    const results = fuzzysort.go(searchValue, posts, {
+      keys: ['title', 'summary', (obj) => obj.tags.join()],
+    })
+    return results.map((r) => r.obj)
+  }, [posts, searchValue])
 
   // If initialDisplayPosts exist, display it if no searchValue is specified
   let displayPosts =

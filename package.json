@@ -44,6 +44,7 @@
     "clsx": "^2.1.0",
     "esbuild": "^0.20.2",
     "framer-motion": "^11.2.12",
+    "fuzzysort": "^3.0.2",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "i18next": "^23.10.1",
