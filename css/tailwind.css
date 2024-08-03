@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  input[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='search'].appearance-none {
+    -moz-appearance: textfield;
+  }
+}
+
 .remark-code-title {
   @apply rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200;
 }
