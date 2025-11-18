@@ -125,13 +125,6 @@ importers:
       typed.js:
         specifier: ^2.1.0
         version: 2.1.0
-    optionalDependencies:
-      '@esbuild/linux-x64':
-        specifier: ^0.20.2
-        version: 0.20.2
-      esbuild-linux-64:
-        specifier: ^0.15.18
-        version: 0.15.18
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.2.1
@@ -229,6 +222,13 @@ importers:
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
+    optionalDependencies:
+      '@esbuild/linux-x64':
+        specifier: ^0.20.2
+        version: 0.20.2
+      esbuild-linux-64:
+        specifier: ^0.15.18
+        version: 0.15.18
 
 packages:
 
